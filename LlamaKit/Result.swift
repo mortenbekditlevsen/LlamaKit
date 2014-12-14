@@ -29,6 +29,14 @@ private func defaultError(userInfo: [NSObject: AnyObject]) -> NSError {
   return NSError(domain: "", code: 0, userInfo: userInfo)
 }
 
+private func defaultError(message: String, file: String = __FILE__, line: Int = __LINE__) -> NSError {
+  return defaultError([NSLocalizedDescriptionKey: message, ErrorFileKey: file, ErrorLineKey: line])
+}
+
+private func defaultError(file: String = __FILE__, line: Int = __LINE__) -> NSError {
+  return defaultError([ErrorFileKey: file, ErrorLineKey: line])
+}
+
 public func failure<T>(message: String, file: String = __FILE__, line: Int = __LINE__) -> Result<T,NSError> {
   let userInfo: [NSObject : AnyObject] = [NSLocalizedDescriptionKey: message, ErrorFileKey: file, ErrorLineKey: line]
   return failure(defaultError(userInfo))
@@ -43,13 +51,26 @@ public func failure<T,E>(error: E) -> Result<T,E> {
   return .Failure(Box(error))
 }
 
-/// Container for a successful value (T) or a failure with an NSError
+/// Construct a `Result` using a block which receives an error parameter.
+/// Expected to return non-nil for success.
+
+public func try<T>(f: NSErrorPointer -> T?, file: String = __FILE__, line: Int = __LINE__) -> Result<T,NSError> {
+  var error: NSError?
+  return f(&error).map(success) ?? failure(error ?? defaultError(file: file, line: line))
+}
+
+public func try(f: NSErrorPointer -> Bool, file: String = __FILE__, line: Int = __LINE__) -> Result<(),NSError> {
+  var error: NSError?
+  return f(&error) ? success(()) : failure(error ?? defaultError(file: file, line: line))
+}
+
+/// Container for a successful value (T) or a failure with an E
 public enum Result<T,E> {
   case Success(Box<T>)
   case Failure(Box<E>)
 
   /// The successful value as an Optional
-  public func value() -> T? {
+  public var value: T? {
     switch self {
     case .Success(let box): return box.unbox
     case .Failure: return nil
@@ -57,14 +78,14 @@ public enum Result<T,E> {
   }
 
   /// The failing error as an Optional
-  public func error() -> E? {
+  public var error: E? {
     switch self {
     case .Success: return nil
     case .Failure(let err): return err.unbox
     }
   }
 
-  public func isSuccess() -> Bool {
+  public var isSuccess: Bool {
     switch self {
     case .Success: return true
     case .Failure: return false

@@ -137,6 +137,20 @@ public func ??<T,E>(result: Result<T,E>, defaultValue: @autoclosure () -> T) -> 
   }
 }
 
+/// Equatable
+/// Equality for Result is defined by the equality of the contained types
+public func ==<T, E where T: Equatable, E: Equatable>(lhs: Result<T, E>, rhs: Result<T, E>) -> Bool {
+    switch (lhs, rhs) {
+    case let (.Success(l), .Success(r)): return l.unbox == r.unbox
+    case let (.Failure(l), .Failure(r)): return l.unbox == r.unbox
+    default: return false
+    }
+}
+
+public func !=<T, E where T: Equatable, E: Equatable>(lhs: Result<T, E>, rhs: Result<T, E>) -> Bool {
+  return !(lhs == rhs)
+}
+
 /// Due to current swift limitations, we have to include this Box in Result.
 /// Swift cannot handle an enum with multiple associated data (A, NSError) where one is of unknown size (A)
 final public class Box<T> {

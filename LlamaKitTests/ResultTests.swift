@@ -31,7 +31,7 @@ class ResultTests: XCTestCase {
 
   func testSuccessReturnsNoError() {
     let s: Result<Int,NSError> = success(42)
-    XCTAssert(s.error == nil)
+    XCTAssertNil(s.error)
   }
 
   func testFailureReturnsError() {

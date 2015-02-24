@@ -12,6 +12,7 @@
 		D0297D2B19D679C0009986A9 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2F8D9019BF637B00E4C49E /* ResultTests.swift */; };
 		D0297D2D19D67A56009986A9 /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0297D1019D67999009986A9 /* LlamaKit.framework */; };
 		D0297D2E19D67AAE009986A9 /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB2F8D8119BF637B00E4C49E /* LlamaKit.framework */; };
+		F529ED881A9C95C5003A9C65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F529ED871A9C95C5003A9C65 /* Foundation.framework */; };
 		FB2F8D8719BF637B00E4C49E /* LlamaKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FB2F8D8619BF637B00E4C49E /* LlamaKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FB2F8D9119BF637B00E4C49E /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2F8D9019BF637B00E4C49E /* ResultTests.swift */; };
 		FB2F8D9B19BF661000E4C49E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2F8D9A19BF661000E4C49E /* Result.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		D0297D1019D67999009986A9 /* LlamaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LlamaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0297D1A19D67999009986A9 /* LlamaKit-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LlamaKit-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F529ED871A9C95C5003A9C65 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FB2F8D8119BF637B00E4C49E /* LlamaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LlamaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2F8D8519BF637B00E4C49E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB2F8D8619BF637B00E4C49E /* LlamaKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LlamaKit.h; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F529ED881A9C95C5003A9C65 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +87,7 @@
 		FB2F8D7719BF637B00E4C49E = {
 			isa = PBXGroup;
 			children = (
+				F529ED871A9C95C5003A9C65 /* Foundation.framework */,
 				FB2F8D8319BF637B00E4C49E /* LlamaKit */,
 				FB2F8D8D19BF637B00E4C49E /* LlamaKitTests */,
 				FB2F8D8219BF637B00E4C49E /* Products */,

@@ -160,7 +160,19 @@ class ResultTests: XCTestCase {
       XCTAssertEqual(r.error!, self.err2)
     }
   }
+  
+  func testValueOrNilSuccess() {
+    let value: Int? = 42
+    let x = valueOrError(value, "Value is nil")
+    XCTAssertEqual(x.value!, 42)
+  }
 
+  func testValueOrNilFailure() {
+    let value: Int? = nil
+    let x = valueOrError(value, "Value is nil")
+    XCTAssertEqual(x.error!, "Value is nil")
+  }
+  
   func testDescriptionSuccess() {
     let x: Result<Int, NSError> = success(42)
     XCTAssertEqual(x.description, "Success: 42")
